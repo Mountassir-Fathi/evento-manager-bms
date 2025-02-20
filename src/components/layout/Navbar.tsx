@@ -6,15 +6,15 @@ export function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 w-full bg-gradient-to-r from-primary/80 to-blue-900/80 backdrop-blur-lg border-b border-white/10 z-50">
+    <nav className="fixed top-0 w-full bg-white shadow-md backdrop-blur-lg border-b border-slate-200 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex">
+          <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/18af67c0-5636-4076-98b9-34eb839fe32a.png" 
+                src="/lovable-uploads/c5faa278-3adf-4869-ba04-92e444d028b4.png" 
                 alt="FSBM Logo" 
-                className="h-10 w-auto hover:scale-105 transition-transform" 
+                className="h-12 w-auto hover:opacity-90 transition-opacity" 
               />
             </Link>
           </div>
@@ -56,15 +56,15 @@ function NavLink({
         relative inline-flex items-center px-4 py-2 text-sm font-medium
         transition-all duration-200 rounded-lg
         ${active 
-          ? "text-white bg-white/10" 
-          : "text-white/80 hover:text-white hover:bg-white/5"
+          ? "text-blue-700 bg-blue-50" 
+          : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
         }
       `}
     >
       <span className={`mr-2 ${active ? "scale-110" : ""} transition-transform`}>{icon}</span>
       {children}
       {active && (
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white rounded-full" />
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full" />
       )}
     </Link>
   );
