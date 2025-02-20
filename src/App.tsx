@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import Events from "./pages/Events";
 import AdminEvents from "./pages/AdminEvents";
+import AdminStudents from "./pages/AdminStudents";
 import EventAttendance from "./pages/EventAttendance";
 import NotFound from "./pages/NotFound";
 
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/events" element={<Events />} />
           <Route path="/admin/events" element={<AdminEvents />} />
+          <Route path="/admin/students" element={<AdminStudents />} />
           <Route path="/admin/events/:id/attendance" element={<EventAttendance />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
