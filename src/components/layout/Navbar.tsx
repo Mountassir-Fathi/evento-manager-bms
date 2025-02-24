@@ -12,12 +12,13 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/c5faa278-3adf-4869-ba04-92e444d028b4.png" 
+                src="https://www.fsb.univh2c.ma/wp-content/uploads/2020/01/logo-fsbVF.png"
                 alt="FSBM Logo" 
                 className="h-12 w-auto hover:opacity-90 transition-opacity" 
               />
             </Link>
           </div>
+          
           <div className="hidden sm:flex sm:space-x-1 items-center">
             <NavLink to="/" icon={<Home className="h-4 w-4" />} active={location.pathname === "/"}>
               Accueil

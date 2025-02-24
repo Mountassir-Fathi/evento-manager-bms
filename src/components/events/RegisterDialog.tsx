@@ -27,6 +27,8 @@ interface RegisterDialogProps {
 export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [pdfPreview, setPdfPreview] = useState<string>("");
+  const [showPreview, setShowPreview] = useState(false);
   
   const generateQRCode = async (text: string) => {
     try {
@@ -143,7 +145,7 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    return html2pdf().set(opt).from(element).save();
+    return html2pdf().set(opt).from(element);
   };
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -153,18 +155,21 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
     const formData = new FormData(e.currentTarget);
     
     try {
-      await generatePDF(formData);
+      const pdfDoc = await generatePDF(formData);
+      const pdfBlob = await pdfDoc.output('blob');
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      setPdfPreview(pdfUrl);
+      setShowPreview(true);
       
       toast({
-        title: "Inscription réussie!",
-        description: "Votre ticket a été généré et le téléchargement va commencer.",
+        title: "Invitation générée!",
+        description: "Vous pouvez maintenant prévisualiser et télécharger votre invitation.",
       });
       
-      onOpenChange(false);
     } catch (error) {
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de la génération du ticket.",
+        description: "Une erreur est survenue lors de la génération de l'invitation.",
         variant: "destructive"
       });
       console.error("Error generating PDF:", error);
@@ -173,41 +178,72 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
     }
   };
 
+  const handleDownload = async () => {
+    const formData = new FormData(document.querySelector('form')!);
+    const pdfDoc = await generatePDF(formData);
+    pdfDoc.save();
+    
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className={showPreview ? "sm:max-w-[800px]" : "sm:max-w-[425px]"}>
         <DialogHeader>
-          <DialogTitle>Inscription à l'événement</DialogTitle>
+          <DialogTitle>
+            {showPreview ? "Prévisualisation de l'invitation" : "Inscription à l'événement"}
+          </DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-6 py-4">
-          <div className="space-y-2">
-            <Label htmlFor="firstName">Prénom</Label>
-            <Input id="firstName" name="firstName" required />
+        
+        {!showPreview ? (
+          <form onSubmit={handleSubmit} className="space-y-6 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="firstName">Prénom</Label>
+              <Input id="firstName" name="firstName" required />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="lastName">Nom</Label>
+              <Input id="lastName" name="lastName" required />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="profession">Profession</Label>
+              <Select name="profession" required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionnez votre profession" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Professeur">Professeur</SelectItem>
+                  <SelectItem value="Étudiant">Étudiant</SelectItem>
+                  <SelectItem value="Invité">Invité</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Génération de l'invitation..." : "Générer l'invitation"}
+            </Button>
+          </form>
+        ) : (
+          <div className="space-y-6">
+            <div className="w-full h-[600px] border rounded-lg overflow-hidden">
+              <iframe
+                src={pdfPreview}
+                className="w-full h-full"
+                title="Prévisualisation de l'invitation"
+              />
+            </div>
+            <div className="flex justify-end gap-4">
+              <Button variant="outline" onClick={() => setShowPreview(false)}>
+                Retour
+              </Button>
+              <Button onClick={handleDownload}>
+                Télécharger l'invitation
+              </Button>
+            </div>
           </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="lastName">Nom</Label>
-            <Input id="lastName" name="lastName" required />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="profession">Profession</Label>
-            <Select name="profession" required>
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionnez votre profession" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Professeur">Professeur</SelectItem>
-                <SelectItem value="Étudiant">Étudiant</SelectItem>
-                <SelectItem value="Invité">Invité</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Génération du ticket..." : "Valider l'inscription"}
-          </Button>
-        </form>
+        )}
       </DialogContent>
     </Dialog>
   );
