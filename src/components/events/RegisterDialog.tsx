@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -152,7 +153,7 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
 
     try {
       console.log('Generating PDF...');
-      const pdf = await html2pdf().set(opt).from(element);
+      const pdf = await html2pdf().from(element).set(opt).save();
       console.log('PDF generated successfully');
       return pdf;
     } catch (error) {
@@ -160,7 +161,7 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
       throw error;
     }
   };
-  
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -168,7 +169,11 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
     try {
       const formData = new FormData(e.currentTarget);
       const pdfDoc = await generatePDF(formData);
-      const pdfBlob = await pdfDoc.output('blob');
+      
+      // Create PDF preview
+      const pdfBlob = await html2pdf()
+        .from(document.querySelector('[data-pdf-content]'))
+        .outputPdf('blob');
       const pdfUrl = URL.createObjectURL(pdfBlob);
       setPdfPreview(pdfUrl);
       setShowPreview(true);
@@ -193,10 +198,7 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
     try {
       setLoading(true);
       const formData = new FormData(document.querySelector('form')!);
-      const pdfDoc = await generatePDF(formData);
-      console.log('Downloading PDF...');
-      await pdfDoc.save();
-      console.log('PDF downloaded successfully');
+      await generatePDF(formData);
       
       toast({
         title: "Téléchargement réussi",
@@ -256,7 +258,7 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
             </Button>
           </form>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6" data-pdf-content>
             <div className="w-full h-[600px] border rounded-lg overflow-hidden">
               <iframe
                 src={pdfPreview}
@@ -278,3 +280,4 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
     </Dialog>
   );
 }
+
