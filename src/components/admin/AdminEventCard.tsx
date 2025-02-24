@@ -3,7 +3,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock, MapPin, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface Event {
   id: number;
@@ -13,7 +12,6 @@ interface Event {
   endTime: string;
   location: string;
   description: string;
-  image: string;
 }
 
 interface AdminEventCardProps {
@@ -32,14 +30,6 @@ export function AdminEventCard({ event }: AdminEventCardProps) {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <AspectRatio ratio={16 / 9} className="bg-muted">
-        <img 
-          src={event.image} 
-          alt={event.title}
-          className="object-cover w-full h-full rounded-t-lg"
-        />
-      </AspectRatio>
-      
       <div className="p-6 space-y-4">
         <h3 className="text-xl font-semibold text-primary">{event.title}</h3>
         
