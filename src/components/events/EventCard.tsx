@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock, MapPin } from "lucide-react";
 import { RegisterDialog } from "./RegisterDialog";
 import { useState } from "react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface Event {
   id: number;
@@ -13,6 +14,7 @@ interface Event {
   endTime: string;
   location: string;
   description: string;
+  imageUrl?: string;
 }
 
 interface EventCardProps {
@@ -31,6 +33,17 @@ export function EventCard({ event }: EventCardProps) {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      {event.imageUrl && (
+        <div className="w-full">
+          <AspectRatio ratio={16 / 9}>
+            <img
+              src={event.imageUrl}
+              alt={event.title}
+              className="object-cover w-full h-full"
+            />
+          </AspectRatio>
+        </div>
+      )}
       <div className="p-6 space-y-4">
         <h3 className="text-xl font-semibold text-primary">{event.title}</h3>
         
