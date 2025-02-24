@@ -141,20 +141,32 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
       margin: 10,
       filename: `invitation-${event.title.toLowerCase().replace(/\s+/g, '-')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { 
+        scale: 2,
+        useCORS: true,
+        logging: true,
+        allowTaint: true
+      },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    return html2pdf().set(opt).from(element);
+    try {
+      console.log('Generating PDF...');
+      const pdf = await html2pdf().set(opt).from(element);
+      console.log('PDF generated successfully');
+      return pdf;
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      throw error;
+    }
   };
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     
-    const formData = new FormData(e.currentTarget);
-    
     try {
+      const formData = new FormData(e.currentTarget);
       const pdfDoc = await generatePDF(formData);
       const pdfBlob = await pdfDoc.output('blob');
       const pdfUrl = URL.createObjectURL(pdfBlob);
@@ -165,25 +177,43 @@ export function RegisterDialog({ event, open, onOpenChange }: RegisterDialogProp
         title: "Invitation générée!",
         description: "Vous pouvez maintenant prévisualiser et télécharger votre invitation.",
       });
-      
     } catch (error) {
+      console.error("Error generating PDF:", error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue lors de la génération de l'invitation.",
         variant: "destructive"
       });
-      console.error("Error generating PDF:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleDownload = async () => {
-    const formData = new FormData(document.querySelector('form')!);
-    const pdfDoc = await generatePDF(formData);
-    pdfDoc.save();
-    
-    onOpenChange(false);
+    try {
+      setLoading(true);
+      const formData = new FormData(document.querySelector('form')!);
+      const pdfDoc = await generatePDF(formData);
+      console.log('Downloading PDF...');
+      await pdfDoc.save();
+      console.log('PDF downloaded successfully');
+      
+      toast({
+        title: "Téléchargement réussi",
+        description: "Votre invitation a été téléchargée avec succès.",
+      });
+      
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors du téléchargement de l'invitation.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

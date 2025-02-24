@@ -17,24 +17,24 @@ const Index = () => {
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed">
               Bienvenue sur le portail de gestion des événements
-              <span className="block mt-2 font-medium text-blue-700">Université Hassan II de Casablanca</span>
+              <span className="block mt-2 font-medium text-primary">Université Hassan II de Casablanca</span>
             </p>
           </div>
 
           <button 
             onClick={() => navigate('/events')}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg leading-none flex items-center mx-auto hover:shadow-lg transition duration-300"
+            className="px-8 py-4 bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] text-white rounded-lg leading-none flex items-center mx-auto hover:shadow-lg transition duration-300 hover:scale-105"
           >
             <Calendar className="mr-2 h-5 w-5" />
             <span className="pr-6">Explorer les événements</span>
-            <span className="pl-6 border-l border-blue-500">→</span>
+            <span className="pl-6 border-l border-white/20">→</span>
           </button>
         </div>
 
         <div className="w-full max-w-7xl mx-auto">
           <h2 className="text-2xl font-semibold text-center mb-8">Nos Derniers Événements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
+            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden bg-gradient-to-b from-white to-[#E5DEFF]">
               <AspectRatio ratio={16/9}>
                 <img 
                   src="/lovable-uploads/427287eb-cad9-466b-879d-bdbf271112ea.png"
@@ -42,13 +42,13 @@ const Index = () => {
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                 />
               </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Conférence Internationale sur les Technologies</h3>
+              <div className="p-6">
+                <h3 className="font-semibold text-lg mb-2 text-[#6E59A5]">Conférence Internationale sur les Technologies</h3>
                 <p className="text-gray-600">Discussions et présentations sur les dernières avancées technologiques</p>
               </div>
             </div>
 
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
+            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden bg-gradient-to-b from-white to-[#F2FCE2]">
               <AspectRatio ratio={16/9}>
                 <img 
                   src="/lovable-uploads/96262cf1-f430-419f-a8b6-0964d556b1c0.png"
@@ -56,13 +56,13 @@ const Index = () => {
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                 />
               </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Workshop sur l'Innovation</h3>
+              <div className="p-6">
+                <h3 className="font-semibold text-lg mb-2 text-[#6E59A5]">Workshop sur l'Innovation</h3>
                 <p className="text-gray-600">Séances pratiques et collaboratives sur l'innovation technologique</p>
               </div>
             </div>
 
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
+            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden bg-gradient-to-b from-white to-[#D3E4FD]">
               <AspectRatio ratio={16/9}>
                 <img 
                   src="/lovable-uploads/d72bb1fa-13e2-4d2c-b497-04038b38b7a8.png"
@@ -70,8 +70,8 @@ const Index = () => {
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                 />
               </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Séminaire de Recherche</h3>
+              <div className="p-6">
+                <h3 className="font-semibold text-lg mb-2 text-[#6E59A5]">Séminaire de Recherche</h3>
                 <p className="text-gray-600">Présentation des travaux de recherche de nos étudiants</p>
               </div>
             </div>
