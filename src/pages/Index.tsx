@@ -1,8 +1,7 @@
 
 import { Layout } from "@/components/layout/Layout";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Calendar } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -10,72 +9,42 @@ const Index = () => {
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center space-y-12 fade-in">
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <div className="relative">
-            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+        <div className="relative w-full max-w-6xl mx-auto">
+          <img 
+            src="/lovable-uploads/b09134da-05a0-4561-9527-df92dcb5d4b0.png"
+            alt="Université Hassan II de Casablanca"
+            className="w-full rounded-xl shadow-lg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-xl" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
               Faculté des Sciences Ben M'Sik
             </h1>
-            <p className="text-xl text-slate-600 leading-relaxed">
-              Bienvenue sur le portail de gestion des événements
-              <span className="block mt-2 font-medium text-blue-700">Université Hassan II de Casablanca</span>
+            <p className="text-xl leading-relaxed max-w-3xl">
+              Explorez l'excellence académique à travers notre plateforme dédiée aux événements prestigieux
+              <span className="block mt-2 font-medium">Université Hassan II de Casablanca</span>
             </p>
           </div>
+        </div>
 
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
           <button 
             onClick={() => navigate('/events')}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg leading-none flex items-center mx-auto hover:shadow-lg transition duration-300"
+            className="px-8 py-4 bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-lg leading-none flex items-center mx-auto shadow-lg transition-all duration-300 hover:translate-y-[-2px]"
           >
             <Calendar className="mr-2 h-5 w-5" />
-            <span className="pr-6">Explorer les événements</span>
-            <span className="pl-6 border-l border-blue-500">→</span>
+            <span className="pr-6">Découvrir nos événements</span>
+            <span className="pl-6 border-l border-[#D6BCFA]">→</span>
           </button>
         </div>
 
-        <div className="w-full max-w-7xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-8">Nos Derniers Événements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/427287eb-cad9-466b-879d-bdbf271112ea.png"
-                  alt="Conférence" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Conférence Internationale sur les Technologies</h3>
-                <p className="text-gray-600">Discussions et présentations sur les dernières avancées technologiques</p>
-              </div>
-            </div>
-
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/96262cf1-f430-419f-a8b6-0964d556b1c0.png"
-                  alt="Workshop" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Workshop sur l'Innovation</h3>
-                <p className="text-gray-600">Séances pratiques et collaboratives sur l'innovation technologique</p>
-              </div>
-            </div>
-
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/d72bb1fa-13e2-4d2c-b497-04038b38b7a8.png"
-                  alt="Séminaire" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Séminaire de Recherche</h3>
-                <p className="text-gray-600">Présentation des travaux de recherche de nos étudiants</p>
-              </div>
-            </div>
-          </div>
+        <div className="w-full max-w-7xl mx-auto px-4">
+          <h2 className="text-2xl font-semibold text-center mb-8 text-[#403E43]">
+            Notre Excellence en Action
+          </h2>
+          <p className="text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+            Rejoignez-nous pour des événements qui façonnent l'avenir de l'éducation et de la recherche scientifique
+          </p>
         </div>
       </div>
     </Layout>
