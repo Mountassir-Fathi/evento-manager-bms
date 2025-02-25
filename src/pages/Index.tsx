@@ -1,6 +1,5 @@
 
 import { Layout } from "@/components/layout/Layout";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,49 +30,48 @@ const Index = () => {
           </button>
         </div>
 
-        <div className="w-full max-w-7xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-8">Nos Derniers Événements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/427287eb-cad9-466b-879d-bdbf271112ea.png"
-                  alt="Conférence" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Conférence Internationale sur les Technologies</h3>
-                <p className="text-gray-600">Discussions et présentations sur les dernières avancées technologiques</p>
+        <div className="w-full max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              src="/lovable-uploads/427287eb-cad9-466b-879d-bdbf271112ea.png"
+              alt="Événement de la faculté" 
+              className="w-full h-[500px] object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div className="p-8 text-white">
+                <h2 className="text-3xl font-semibold mb-4">L'Excellence Académique en Action</h2>
+                <p className="text-lg leading-relaxed">
+                  Découvrez nos événements prestigieux qui incarnent l'excellence académique et l'innovation. 
+                  Des conférences internationales aux séminaires spécialisés, chaque rencontre est une 
+                  opportunité d'enrichissement intellectuel et de networking professionnel.
+                </p>
               </div>
             </div>
+          </div>
 
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/96262cf1-f430-419f-a8b6-0964d556b1c0.png"
-                  alt="Workshop" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Workshop sur l'Innovation</h3>
-                <p className="text-gray-600">Séances pratiques et collaboratives sur l'innovation technologique</p>
-              </div>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="glass-card p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3 text-primary">Conférences d'Excellence</h3>
+              <p className="text-gray-600">
+                Des échanges intellectuels de haut niveau réunissant experts internationaux et chercheurs 
+                éminents pour des discussions enrichissantes sur les dernières avancées scientifiques.
+              </p>
             </div>
 
-            <div className="group hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src="/lovable-uploads/d72bb1fa-13e2-4d2c-b497-04038b38b7a8.png"
-                  alt="Séminaire" 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </AspectRatio>
-              <div className="p-4 bg-white">
-                <h3 className="font-semibold text-lg mb-2">Séminaire de Recherche</h3>
-                <p className="text-gray-600">Présentation des travaux de recherche de nos étudiants</p>
-              </div>
+            <div className="glass-card p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3 text-primary">Séminaires Spécialisés</h3>
+              <p className="text-gray-600">
+                Des sessions approfondies permettant l'exploration détaillée des domaines de recherche 
+                émergents et l'échange d'expertise entre professionnels du secteur.
+              </p>
+            </div>
+
+            <div className="glass-card p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-3 text-primary">Ateliers d'Innovation</h3>
+              <p className="text-gray-600">
+                Des espaces de création et d'expérimentation où théorie et pratique se rencontrent pour 
+                façonner les solutions de demain.
+              </p>
             </div>
           </div>
         </div>
