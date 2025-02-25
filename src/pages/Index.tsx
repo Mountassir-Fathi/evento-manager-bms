@@ -33,20 +33,10 @@ const Index = () => {
         <div className="w-full max-w-5xl mx-auto">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <img 
-              src="/lovable-uploads/427287eb-cad9-466b-879d-bdbf271112ea.png"
-              alt="Événement de la faculté" 
-              className="w-full h-[500px] object-cover"
+              src="/lovable-uploads/bf14ca15-ca82-4c35-be83-b9dd7cdff3ab.png"
+              alt="Faculté des Sciences Ben M'Sik" 
+              className="w-full h-[400px] object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <h2 className="text-3xl font-semibold mb-4">L'Excellence Académique en Action</h2>
-                <p className="text-lg leading-relaxed">
-                  Découvrez nos événements prestigieux qui incarnent l'excellence académique et l'innovation. 
-                  Des conférences internationales aux séminaires spécialisés, chaque rencontre est une 
-                  opportunité d'enrichissement intellectuel et de networking professionnel.
-                </p>
-              </div>
-            </div>
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
