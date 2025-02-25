@@ -38,32 +38,6 @@ const Index = () => {
               className="w-full h-[400px] object-cover"
             />
           </div>
-
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-3 text-primary">Conférences d'Excellence</h3>
-              <p className="text-gray-600">
-                Des échanges intellectuels de haut niveau réunissant experts internationaux et chercheurs 
-                éminents pour des discussions enrichissantes sur les dernières avancées scientifiques.
-              </p>
-            </div>
-
-            <div className="glass-card p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-3 text-primary">Séminaires Spécialisés</h3>
-              <p className="text-gray-600">
-                Des sessions approfondies permettant l'exploration détaillée des domaines de recherche 
-                émergents et l'échange d'expertise entre professionnels du secteur.
-              </p>
-            </div>
-
-            <div className="glass-card p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-3 text-primary">Ateliers d'Innovation</h3>
-              <p className="text-gray-600">
-                Des espaces de création et d'expérimentation où théorie et pratique se rencontrent pour 
-                façonner les solutions de demain.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </Layout>
